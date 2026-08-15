@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get emailed about car meets happening near you around Melbourne.">
+<meta name="theme-color" content="#F6F2EC">
+<title>Get notified — Melbourne Car Meets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#F6F2EC;
+  --card:#FFFFFF;
+  --ink:#22303C;
+  --soft:#6C7E8C;
+  --dusk:#E88C4D;
+  --sky:#3E7FA8;
+  --edge:#E4DCD1;
+  --shadow:0 2px 10px rgba(34,48,60,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--page);color:var(--ink);
+  font-family:'Karla',system-ui,sans-serif;
+  font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding:0 20px 70px;
+}
+.wrap{max-width:600px;margin:0 auto}
+
+.back{
+  display:inline-block;margin-top:26px;
+  color:var(--soft);text-decoration:none;
+  font-size:14.5px;font-weight:600;
+}
+.back:hover{color:var(--dusk)}
+
+h1{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(34px,7vw,48px);
+  font-weight:700;line-height:1.05;letter-spacing:-0.02em;
+  margin-top:16px;
+}
+.lede{margin-top:12px;color:var(--soft);max-width:44ch}
+
+form{
+  margin-top:26px;padding:24px 22px 26px;
+  background:var(--card);border:1px solid var(--edge);
+  border-radius:18px;box-shadow:var(--shadow);
+}
+form[hidden]{display:none}
+label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+.hint{font-weight:400;color:var(--soft);font-size:14px}
+.field{margin-bottom:19px}
+input[type=text],input[type=email],select{
+  width:100%;padding:13px 15px;
+  background:#FBF9F6;border:1px solid var(--edge);
+  border-radius:12px;color:var(--ink);
+  font-family:inherit;font-size:16px;
+}
+input:focus,select:focus{outline:none;border-color:var(--sky);background:#fff}
+input.bad{border-color:#C0563A;background:#FDF3F0}
+
+.range{width:100%;accent-color:var(--dusk);height:28px;margin-top:6px}
+.range-row{display:flex;align-items:baseline;justify-content:space-between}
+.range-val{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:600;color:var(--dusk)}
+.scale{display:flex;justify-content:space-between;font-size:12.5px;color:var(--soft)}
+
+.check{display:flex;gap:11px;align-items:flex-start;margin-bottom:20px}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--dusk);flex:0 0 auto}
+.check label{font-weight:400;font-size:14.5px;color:var(--soft);margin:0}
+
+button{
+  width:100%;padding:15px;border:none;border-radius:12px;
+  background:var(--dusk);color:#fff;cursor:pointer;
+  font-family:'Karla',sans-serif;font-size:16.5px;font-weight:700;
+}
+button:hover{background:#D97C3D}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+.err{margin-top:12px;color:#B0563A;font-size:14.5px;font-weight:600}
+.err[hidden]{display:none}
+
+.done{
+  margin-top:26px;padding:34px 26px;
+  background:var(--card);border:1px solid var(--edge);
+  border-radius:18px;box-shadow:var(--shadow);text-align:center;
+}
+.done[hidden]{display:none}
+.done .tick{
+  width:58px;height:58px;margin:0 auto 16px;
+  border-radius:50%;background:#E7F3EA;
+  display:flex;align-items:center;justify-content:center;color:#3F7D53;
+}
+.done .tick svg{width:28px;height:28px}
+.done h2{font-family:'Fraunces',Georgia,serif;font-size:29px;font-weight:600;line-height:1.15}
+.done p{margin-top:11px;color:var(--soft)}
+.done a{
+  display:inline-block;margin-top:20px;padding:13px 22px;
+  background:var(--ink);color:#fff;text-decoration:none;
+  border-radius:12px;font-weight:700;font-size:15.5px;
+}
+
+.small{margin-top:20px;font-size:13.5px;color:var(--soft);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">&#8592; Back to meets</a>
+
+  <h1>Get notified</h1>
+  <p class="lede">Tell us roughly where you are and how far you'll travel. You'll get an email about a week before a meet near you.</p>
+
+  <form id="subForm" novalidate>
+
+    <div class="field">
+      <label for="first">First name</label>
+      <input type="text" id="first" autocomplete="given-name" placeholder="First name">
+    </div>
+
+    <div class="field">
+      <label for="last">Last name</label>
+      <input type="text" id="last" autocomplete="family-name" placeholder="Last name">
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
+    </div>
+
+    <div class="field">
+      <label for="suburb">Suburb or postcode <span class="hint">so we know what's near you</span></label>
+      <input type="text" id="suburb" autocomplete="postal-code" placeholder="e.g. Ringwood or 3134">
+    </div>
+
+    <div class="field">
+      <div class="range-row">
+        <label for="dist">How far will you travel?</label>
+        <span class="range-val" id="distVal">50 km</span>
+      </div>
+      <input class="range" type="range" id="dist" min="5" max="300" step="5" value="50">
+      <div class="scale"><span>5 km</span><span>300 km</span></div>
+    </div>
+
+    <div class="field">
+      <label for="kind">What are you into?</label>
+      <select id="kind">
+        <option value="Everything">Everything</option>
+        <option value="JDM / imports">JDM / imports</option>
+        <option value="Euro">Euro</option>
+        <option value="Aussie muscle">Aussie muscle</option>
+        <option value="Classics and vintage">Classics and vintage</option>
+        <option value="Track days">Track days</option>
+        <option value="Museums and shows">Museums and shows</option>
+      </select>
+    </div>
+
+    <div class="check">
+      <input type="checkbox" id="consent">
+      <label for="consent">Yes, email me about meets near me. I can unsubscribe any time by replying to any email.</label>
+    </div>
+
+    <button type="submit">Subscribe</button>
+    <p class="err" id="err" hidden></p>
+  </form>
+
+  <div class="done" id="done" hidden>
+    <div class="tick">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg>
+    </div>
+    <h2>Thanks for subscribing</h2>
+    <p>We'll be on our toes and find the nearest car meets for you. Keep an eye on your inbox about a week before anything good happens near you.</p>
+    <a href="index.html">Back to meets</a>
+  </div>
+
+  <p class="small">
+    Your email is only used to send you meet notifications. Nothing gets sold or passed on, and every email has an unsubscribe.
+  </p>
+
+</div>
+
+<script>
+/* ============================================================
+   Where subscriptions go.
+
+   Right now this opens a prefilled Gmail message addressed to
+   your inbox, so it works with zero setup — you get one email
+   per subscriber and you keep the list yourself.
+
+   When you outgrow that, sign up to MailerLite or Formspree
+   (both free to start), change MODE to "post", and paste your
+   form endpoint into ENDPOINT.
+   ============================================================ */
+const MODE = "gmail";          // "gmail" or "post"
+const INBOX = "MelbourneCarMeets@gmail.com";
+const ENDPOINT = "";           // e.g. "https://formspree.io/f/xxxxxxxx"
+
+const form = document.getElementById('subForm');
+const errEl = document.getElementById('err');
+const doneEl = document.getElementById('done');
+const distEl = document.getElementById('dist');
+const distVal = document.getElementById('distVal');
+
+distEl.addEventListener('input', function(){
+  distVal.textContent = distEl.value + ' km';
+});
+
+function fail(msg, field){
+  errEl.textContent = msg;
+  errEl.hidden = false;
+  if (field){ field.classList.add('bad'); field.focus(); }
+}
+
+function finish(){
+  form.hidden = true;
+  doneEl.hidden = false;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  errEl.hidden = true;
+  document.querySelectorAll('.bad').forEach(function(f){ f.classList.remove('bad'); });
+
+  const first = document.getElementById('first').value.trim();
+  const last = document.getElementById('last').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const suburb = document.getElementById('suburb').value.trim();
+  const kind = document.getElementById('kind').value;
+  const km = distEl.value;
+  const consent = document.getElementById('consent').checked;
+
+  if (!first) return fail('Pop your first name in so we know who we\u2019re emailing.', document.getElementById('first'));
+  if (!last) return fail('Last name too, please.', document.getElementById('last'));
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('That email address doesn\u2019t look right.', document.getElementById('email'));
+  if (!suburb) return fail('We need a suburb or postcode to work out what\u2019s near you.', document.getElementById('suburb'));
+  if (!consent) return fail('Tick the box so we know you\u2019re happy to be emailed.');
+
+  const body = 'New subscriber\n\n'
+    + 'First name: ' + first + '\n'
+    + 'Last name: ' + last + '\n'
+    + 'Email: ' + email + '\n'
+    + 'Suburb or postcode: ' + suburb + '\n'
+    + 'Will travel: ' + km + ' km\n'
+    + 'Into: ' + kind + '\n'
+    + 'Consent given: yes\n';
+
+  if (MODE === 'post' && ENDPOINT){
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({first: first, last: last, email: email, suburb: suburb, km: km, kind: kind})
+    }).catch(function(){});
+  } else {
+    window.open(
+      'https://mail.google.com/mail/?view=cm&fs=1'
+      + '&to=' + encodeURIComponent(INBOX)
+      + '&su=' + encodeURIComponent('Subscribe: ' + first + ' ' + last)
+      + '&body=' + encodeURIComponent(body),
+      '_blank', 'noopener'
+    );
+  }
+
+  finish();
+});
+</script>
+</body>
+</html>
